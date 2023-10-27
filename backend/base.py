@@ -1,13 +1,15 @@
 from flask import Flask, request, jsonify
 import mysql.connector
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def index():
     return 'Welcome to Flask App!'
 
-@app.route('/add-user', methods=['POST'])
+@app.route('/add-user', methods=['POST','GET'])
 def add_user():
     data = request.get_json()
     username = data['name']
